@@ -1,0 +1,22 @@
+<main>
+  <div #list class="list" [ngClass]="{ 'transparent': isEditing }">
+    <input #title type="text" placeholder="Título da tarefa">
+    <textarea #description rows="4" placeholder="Descrição da tarefa"></textarea>
+    <button (click)="add(title.value, description.value)" class="insert">
+      Adicionar à lista
+    </button>
+    <div class="divider"></div>
+    <div class="tasks">
+      <img *ngIf="tasks == null" class="loading" src="/assets/loading.svg">
+      <ng-container *ngFor="let task of tasks">
+        <app-task (taskIdToDelete)="delete($event)" [id]="task.id" [title]="task.title" [description]="task.description" />
+      </ng-container>
+    </div>
+  </div>
+  <div *ngIf="editService.current" #edit class="edit transparent" [ngClass]="{ 'hidden': !isEditing }">
+    <img (click)="closeEdit()" alt="Seta apontando para esquerda" src="/assets/arrow-back.svg" class="back-arrow">
+    <input #editTitle type="text" [value]="editService.current.title" placeholder="Título da tarefa">
+    <textarea #editDescription rows="4" [value]="editService.current.description" placeholder="Descrição da tarefa"></textarea>
+    <button (click)="put(editService.current.id, editTitle.value, editDescription.value)" class="save">Salvar alterações</button>
+  </div>
+</main>

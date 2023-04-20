@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  padding: 12px;
+  text-align: left;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid #979797;
+    background-color: #fafafa;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .check {
+    width: 10%;
+
+    &:hover {
+      filter: brightness(95%);
+      transform: scale(1.1);
+      transform-origin: center;
+    }
+  }
+}
