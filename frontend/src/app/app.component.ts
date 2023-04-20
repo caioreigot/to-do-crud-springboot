@@ -69,7 +69,7 @@ export class AppComponent implements OnDestroy {
       return;
     }
     
-    this.http.put(`http://localhost:8080/tasks/${id}`, { title, description }).subscribe(
+    this.http.put(`http://localhost:8080/tasks/${id}`, { id, title, description }).subscribe(
       { 
         complete: () => { 
           this.fetchTasks();
