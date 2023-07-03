@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +55,9 @@ public class TasksApi {
          TaskDTO taskFound = tasksFacade.getById(taskId);
          return new ResponseEntity<>(taskFound, HttpStatus.OK);
       } catch(Exception error) {
-         return new ResponseEntity<>("Task not found.", HttpStatus.NOT_FOUND);
+         Map<String, String> response = new HashMap<String, String>();
+         response.put("message", "Task not found.");
+         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
       }
    }
 
